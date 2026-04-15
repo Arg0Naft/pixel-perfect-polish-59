@@ -8,33 +8,43 @@ const ProblemsSection = () => {
   const { data: cards } = useContentCards("problems");
 
   const fallback = [
-    { title: "Сухость и жжение", description: "В отопительный сезон и при длительной работе в кондиционируемом помещении", icon: "Flame" },
-    { title: "Заложенность и насморк", description: "Облегчение симптомов при ОРВИ без сосудосуживающих капель", icon: "Wind" },
-    { title: "Аллергический ринит", description: "Барьерная защита слизистой от пыльцы, пыли и шерсти животных", icon: "Flower2" },
-    { title: "Синдром сухого носа", description: "Восстановление после длительного применения сосудосуживающих препаратов", icon: "Pill" },
+    { title: "Сухость и жжение в носу", description: "Отопление, кондиционеры и сухой воздух повреждают слизистую. ТимиЛор увлажняет и восстанавливает защитный барьер.", icon: "Flame" },
+    { title: "Заложенность после ОРВИ", description: "После простуды слизистая воспалена и уязвима. Пептидный комплекс ускоряет её восстановление без сосудосуживающих средств.", icon: "Thermometer" },
+    { title: "Аллергический ринит", description: "Пыльца, пыль и шерсть раздражают нос. Гиалуроновая кислота формирует защитную плёнку на слизистой.", icon: "Flower2" },
+    { title: "Зависимость от капель", description: "После длительного применения сосудосуживающих капель слизистая пересыхает. ТимиЛор помогает восстановить её естественную работу.", icon: "Pill" },
   ];
 
   const items = cards && cards.length > 0 ? cards : fallback;
 
   return (
-    <section className="py-16 md:py-24 bg-muted/50">
+    <section className="py-20 md:py-28 section-gradient-soft">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">
-          {content?.problems_title ?? "Знакомо"}<span className="text-accent">?</span>
+          {content?.problems_title ?? "С какими проблемами справляется ТимиЛор"}
         </h2>
-        <p className="text-center text-muted-foreground mb-12">
-          {content?.problems_subtitle ?? "ТимиЛор разработан для решения этих проблем"}
+        <p className="text-center text-muted-foreground mb-14 max-w-xl mx-auto">
+          {content?.problems_subtitle ?? "Мягкое решение для самых частых проблем с носовым дыханием"}
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((p) => {
+          {items.map((p, i) => {
             const Icon = iconMap[p.icon] || LucideIcons.Circle;
+            const isFirst = i === 0;
             return (
-              <div key={p.title} className="bg-card rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg transition-all group">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <div
+                key={p.title}
+                className={`bg-card rounded-2xl p-6 border transition-all group ${
+                  isFirst
+                    ? "border-primary/30 shadow-md ring-1 ring-primary/10"
+                    : "border-border hover:border-primary/20 hover:shadow-lg"
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors ${
+                  isFirst ? "bg-primary/15" : "bg-primary/8 group-hover:bg-primary/15"
+                }`}>
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{p.title}</h3>
+                <h3 className="text-base font-semibold mb-2">{p.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{p.description}</p>
               </div>
             );
