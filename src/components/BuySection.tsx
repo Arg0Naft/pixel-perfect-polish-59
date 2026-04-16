@@ -1,87 +1,40 @@
-import { useState } from "react";
-import { ShoppingBag, Mail, CheckCircle2 } from "lucide-react";
-import { useSiteContent, useContentCards } from "@/hooks/useSiteContent";
+import { useSiteContent } from "@/hooks/useSiteContent";
+
+const channels = [
+  { label: "Аптеки", href: "#" },
+  { label: "Ozon", href: "#" },
+  { label: "Wildberries", href: "#" },
+  { label: "Узнать о наличии", href: "#" },
+];
 
 const BuySection = () => {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const { data: content } = useSiteContent();
-  const { data: cards } = useContentCards("marketplaces");
-
-  const fallbackMarketplaces = [
-    { title: "Wildberries", extra_data: { color: "bg-purple-100 text-purple-700" } },
-    { title: "Ozon", extra_data: { color: "bg-blue-100 text-blue-700" } },
-    { title: "Apteka.ru", extra_data: { color: "bg-green-100 text-green-700" } },
-    { title: "Сбер Аптека", extra_data: { color: "bg-emerald-100 text-emerald-700" } },
-  ];
-
-  const marketplaces = cards && cards.length > 0 ? cards : fallbackMarketplaces;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubmitted(true);
-      setEmail("");
-    }
-  };
 
   return (
-    <section id="buy" className="py-20 md:py-28 section-gradient-soft">
-      <div className="max-w-4xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">
+    <section id="buy" className="py-20 md:py-28">
+      <div className="max-w-3xl mx-auto px-4 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">
           {content?.buy_title ?? "Где купить ТимиЛор"}
         </h2>
-        <p className="text-center text-muted-foreground mb-14 max-w-lg mx-auto">
-          {content?.buy_subtitle ?? "Скоро на ведущих площадках и в аптеках. Оставьте email — уведомим, когда появится в продаже."}
+        <p className="text-muted-foreground mb-10 max-w-lg mx-auto">
+          {content?.buy_subtitle ?? "Выбирайте удобный формат покупки — аптеки, маркетплейсы и онлайн-каналы."}
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          {marketplaces.map((m: any) => {
-            const color = typeof m.extra_data === "object" && m.extra_data?.color
-              ? m.extra_data.color
-              : "bg-muted text-muted-foreground";
-            return (
-              <div key={m.title} className="bg-card rounded-2xl p-5 border border-border text-center">
-                <div className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center mx-auto mb-3`}>
-                  <ShoppingBag className="w-6 h-6" />
-                </div>
-                <h3 className="font-semibold text-sm mb-1">{m.title}</h3>
-                <span className="text-xs text-muted-foreground bg-muted px-2.5 py-0.5 rounded-full">Скоро</span>
-              </div>
-            );
-          })}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+          {channels.map((c) => (
+            <a
+              key={c.label}
+              href={c.href}
+              className="bg-card border border-border rounded-full px-6 py-3 text-sm font-medium hover:border-accent/30 transition-colors"
+            >
+              {c.label}
+            </a>
+          ))}
         </div>
 
-        <div className="bg-card rounded-2xl p-8 md:p-10 border border-border text-center max-w-xl mx-auto shadow-sm">
-          <Mail className="w-8 h-8 text-primary mx-auto mb-4" />
-          <h3 className="font-semibold text-lg mb-2">Узнайте первыми о старте продаж</h3>
-          <p className="text-muted-foreground mb-6 text-sm">
-            {content?.buy_email_prompt ?? "Оставьте email — мы сообщим, когда ТимиЛор появится в аптеках и маркетплейсах"}
-          </p>
-          {submitted ? (
-            <div className="flex items-center justify-center gap-2 text-accent font-medium py-3">
-              <CheckCircle2 className="w-5 h-5" />
-              <span>{content?.buy_email_success ?? "Спасибо! Мы уведомим вас о старте продаж."}</span>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="ваш@email.com"
-                className="flex-1 rounded-full border border-input bg-background px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-              />
-              <button
-                type="submit"
-                className="bg-accent text-accent-foreground px-8 py-3 rounded-full text-sm font-bold hover:opacity-90 transition-opacity whitespace-nowrap"
-              >
-                Уведомить меня
-              </button>
-            </form>
-          )}
-        </div>
+        <p className="text-sm text-muted-foreground">
+          Средняя цена — около 390 ₽
+        </p>
       </div>
     </section>
   );
