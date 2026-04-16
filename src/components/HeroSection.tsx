@@ -1,5 +1,12 @@
-import { Droplets, ShieldCheck, Baby } from "lucide-react";
+import { Check } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
+
+const bullets = [
+  "Тимические пептиды + гиалуроновая кислота — двойная поддержка",
+  "30 мл / около 220 доз — хватает надолго",
+  "Не содержит сосудосуживающих компонентов",
+  "Подходит для ежедневного применения",
+];
 
 const HeroSection = () => {
   const { data: content } = useSiteContent();
@@ -8,27 +15,40 @@ const HeroSection = () => {
     <section className="relative pt-28 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 section-gradient-primary" />
 
-      <div className="relative max-w-4xl mx-auto px-4 text-center">
-        <div className="inline-flex items-center gap-2 bg-primary/8 text-primary px-5 py-2 rounded-full text-sm font-medium mb-8 border border-primary/10">
-          <span>{content?.hero_badge ?? "30 мл · Без рецепта · Без консервантов"}</span>
+      <div className="relative max-w-4xl mx-auto px-4">
+        <div className="text-center mb-10">
+          <span className="inline-block text-sm font-medium text-accent bg-accent/8 border border-accent/12 rounded-full px-5 py-2 mb-8">
+            {content?.hero_badge ?? "Ежедневное увлажнение и защита слизистой носа"}
+          </span>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6 tracking-tight">
+            {content?.hero_title ?? (
+              <>
+                Дышите свободно.
+                <br />
+                <span className="text-primary">Каждый день.</span>
+              </>
+            )}
+          </h1>
+
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            {content?.hero_description ??
+              "ТимиЛор — назальный спрей с тимическими пептидами и гиалуроновой кислотой. Увлажняет, поддерживает защитные функции слизистой и помогает ощущать комфорт в условиях современного мегаполиса."}
+          </p>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
-          {content?.hero_title ?? (
-            <>
-              Защита и восстановление{" "}
-              <span className="text-primary">слизистой носа</span>
-              <br className="hidden sm:block" />
-              <span className="text-accent"> — без привыкания и жжения</span>
-            </>
-          )}
-        </h1>
+        {/* Bullets */}
+        <div className="max-w-md mx-auto mb-10 space-y-3">
+          {bullets.map((b) => (
+            <div key={b} className="flex items-start gap-3 text-sm text-foreground/80">
+              <Check className="w-4 h-4 mt-0.5 text-accent shrink-0" />
+              <span>{b}</span>
+            </div>
+          ))}
+        </div>
 
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          {content?.hero_description ?? "Пептидный комплекс с гиалуроновой кислотой для ежедневной защиты при сухости воздуха, ОРВИ, аллергии и после сосудосуживающих капель. Подходит взрослым и детям."}
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <a
             href="#buy"
             className="w-full sm:w-auto bg-accent text-accent-foreground px-10 py-4 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg shadow-accent/20"
@@ -36,27 +56,17 @@ const HeroSection = () => {
             {content?.hero_cta_primary ?? "Где купить"}
           </a>
           <a
-            href="#ingredients"
-            className="w-full sm:w-auto border-2 border-primary/20 text-primary px-10 py-4 rounded-full text-lg font-semibold hover:bg-primary/5 transition-colors"
+            href="#how-it-works"
+            className="w-full sm:w-auto border-2 border-border text-foreground px-10 py-4 rounded-full text-lg font-semibold hover:bg-muted/50 transition-colors"
           >
-            {content?.hero_cta_secondary ?? "Состав и безопасность"}
+            {content?.hero_cta_secondary ?? "Узнать больше"}
           </a>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-accent" />
-            <span>{content?.hero_feature_1 ?? "Не вызывает привыкания"}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Droplets className="w-5 h-5 text-accent" />
-            <span>{content?.hero_feature_2 ?? "Без консервантов и красителей"}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Baby className="w-5 h-5 text-accent" />
-            <span>{content?.hero_feature_3 ?? "Подходит детям с 1 года"}</span>
-          </div>
-        </div>
+        {/* Price line */}
+        <p className="text-center text-sm text-muted-foreground">
+          Около 390 ₽ • 30 мл • ~220 доз
+        </p>
       </div>
     </section>
   );
