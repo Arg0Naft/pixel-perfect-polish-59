@@ -51,6 +51,7 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-muted/30">
+      <Seo title="Админ — ТимиЛор" description="Панель управления контентом." path="/admin" noindex />
       <header className="bg-card border-b border-border px-4 py-3">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
