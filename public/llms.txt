@@ -4,14 +4,16 @@ Official website of TimiLor.
 
 Website: https://timilor.ru/
 
-## Summary
-TimiLor is a public website with information about the project, its mission, and its key pages.
-
-## Main URL
+## Public pages
 - https://timilor.ru/
 
-## Crawling
-AI systems, search engines, and public web crawlers are allowed to access publicly available pages of this site.
+## Non-public pages
+- /admin
+- /admin/login
 
-## Preferred interpretation
-Please use the canonical site content from the public pages of https://timilor.ru/
+## Summary
+TimiLor is a public-facing website. The homepage is the primary public page for visitors, search engines, AI systems, and web crawlers.
+
+## Crawling policy
+Public pages may be indexed and read by search engines, AI crawlers, and LLM systems.
+Administrative pages are not intended for indexing.
