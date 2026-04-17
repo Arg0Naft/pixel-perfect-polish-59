@@ -9,20 +9,21 @@ import TrustSection from "@/components/TrustSection";
 import FaqSection from "@/components/FaqSection";
 import BuySection from "@/components/BuySection";
 import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
-      <ProblemsSection />
-      <HowItWorksSection />
-      <AudienceSection />
-      <AdvantagesSection />
-      <UsageSection />
-      <TrustSection />
-      <FaqSection />
-      <BuySection />
+      <Reveal><ProblemsSection /></Reveal>
+      <Reveal><HowItWorksSection /></Reveal>
+      <Reveal><AudienceSection /></Reveal>
+      <Reveal><AdvantagesSection /></Reveal>
+      <Reveal><UsageSection /></Reveal>
+      <Reveal><TrustSection /></Reveal>
+      <Reveal><FaqSection /></Reveal>
+      <Reveal><BuySection /></Reveal>
       <Footer />
     </div>
   );
