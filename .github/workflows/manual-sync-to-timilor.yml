@@ -14,10 +14,19 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Remove workflow files before sync
+        run: |
+          rm -rf .github/workflows
+
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit workflow removal if needed
+        run: |
+          git add -A
+          git diff --cached --quiet || git commit -m "Prepare deploy mirror without workflow files"
 
       - name: Push current main to old repo
         env:
