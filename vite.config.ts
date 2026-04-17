@@ -17,9 +17,9 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core", "react-helmet-async"],
+    dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "react-helmet-async"],
   },
   optimizeDeps: {
-    include: ["react", "react-dom", "react-helmet-async", "@tanstack/react-query"],
+    include: ["react", "react-dom", "react-helmet-async"],
   },
 }));

@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 
-const SITE_URL = "https://timilor.lovable.app";
+const SITE_URL = "https://timilor.ru";
 const DEFAULT_OG_IMAGE =
   "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/afdd0b15-df3e-4afd-8b3a-379d0b493725";
 
