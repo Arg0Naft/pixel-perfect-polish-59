@@ -26,7 +26,7 @@ const Index = () => {
       price: "390",
       priceCurrency: "RUB",
       availability: "https://schema.org/InStock",
-      url: "https://timilor.lovable.app/",
+      url: "https://timilor.ru/",
     },
   };
 
