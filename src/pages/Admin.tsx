@@ -4,6 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { LogOut, Save, Plus, Trash2, GripVertical } from "lucide-react";
+import Seo from "@/components/Seo";
 
 type Tab = "texts" | "cards" | "faq";
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import Seo from "@/components/Seo";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -25,6 +26,7 @@ const AdminLogin = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted/30 px-4">
+      <Seo title="Вход — админ ТимиЛор" description="Вход в панель управления." path="/admin/login" noindex />
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <span className="text-2xl font-bold" style={{ fontFamily: "Montserrat, sans-serif" }}>
