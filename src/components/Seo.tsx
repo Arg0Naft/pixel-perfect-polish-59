@@ -23,23 +23,21 @@ const Seo = ({
   noindex = false,
   jsonLd,
 }: SeoProps) => {
-  const url = `${SITE_URL}${path}`;
-  const safeTitle = title.length > 60 ? title.slice(0, 57) + "..." : title;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const url = `${SITE_URL}${normalizedPath}`;
+
+  const safeTitle = title.length > 60 ? `${title.slice(0, 57)}...` : title;
   const safeDescription =
-    description.length > 160 ? description.slice(0, 157) + "..." : description;
+    description.length > 160 ? `${description.slice(0, 157)}...` : description;
 
   return (
     <Helmet>
+      <html lang="ru" />
       <title>{safeTitle}</title>
       <meta name="description" content={safeDescription} />
       <link rel="canonical" href={url} />
-      {noindex ? (
-        <meta name="robots" content="noindex, nofollow" />
-      ) : (
-        <meta name="robots" content="index, follow" />
-      )}
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
 
-      {/* Open Graph */}
       <meta property="og:title" content={safeTitle} />
       <meta property="og:description" content={safeDescription} />
       <meta property="og:type" content={type} />
@@ -48,11 +46,11 @@ const Seo = ({
       <meta property="og:site_name" content="ТимиЛор" />
       <meta property="og:locale" content="ru_RU" />
 
-      {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={safeTitle} />
       <meta name="twitter:description" content={safeDescription} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:url" content={url} />
 
       {jsonLd && (
         <script type="application/ld+json">
