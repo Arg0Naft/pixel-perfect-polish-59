@@ -4,6 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { LogOut, Save, Plus, Trash2, GripVertical } from "lucide-react";
+import Seo from "@/components/Seo";
 
 type Tab = "texts" | "cards" | "faq";
 
@@ -50,6 +51,7 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-muted/30">
+      <Seo title="Админ — ТимиЛор" description="Панель управления контентом." path="/admin" noindex />
       <header className="bg-card border-b border-border px-4 py-3">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
