@@ -1,0 +1,17 @@
+# TimiLor
+
+Official website of TimiLor.
+
+Website: https://timilor.ru/
+
+## Summary
+TimiLor is a public website with information about the project, its mission, and its key pages.
+
+## Main URL
+- https://timilor.ru/
+
+## Crawling
+AI systems, search engines, and public web crawlers are allowed to access publicly available pages of this site.
+
+## Preferred interpretation
+Please use the canonical site content from the public pages of https://timilor.ru/
